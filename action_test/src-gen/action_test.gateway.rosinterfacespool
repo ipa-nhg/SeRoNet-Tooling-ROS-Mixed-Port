@@ -1,0 +1,5 @@
+RosInterfacesPool {
+	RosSubscriber diagnostics { topicName "diagnostics" type "diagnostic_msgs.DiagnosticArray" }
+	RosSrvClient init { srvName "init" type "std_srvs.Trigger" }
+	RosActionClient joint_trajectory_controller { actionName "joint_trajectory_controller" type "control_msgs.FollowJointTrajectory" }
+}

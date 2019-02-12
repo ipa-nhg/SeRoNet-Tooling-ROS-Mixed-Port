@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:ros="http://www.ipa.fraunhofer.de/ros" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
+  <viewpoint:DAnalysis xmi:id="_4XveYC6fEem8-fQsXDe-_w" selectedViews="_4ZLo0C6fEem8-fQsXDe-_w" version="12.1.0.201708031200">
+    <semanticResources>rosnodes/action_test.ros</semanticResources>
+    <semanticResources>basic_msgs/common_msgs.ros</semanticResources>
+    <semanticResources>basic_msgs/control_msgs.ros</semanticResources>
+    <semanticResources>basic_msgs/ros_core.ros</semanticResources>
+    <semanticResources>src-gen/action_test.gateway.rosinterfacespool</semanticResources>
+    <ownedViews xmi:type="viewpoint:DView" xmi:id="_4ZLo0C6fEem8-fQsXDe-_w">
+      <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/de.fraunhofer.ipa.ros.sirius/description/ros.odesign#//@ownedViewpoints[name='component']"/>
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_6cu08C6fEem8-fQsXDe-_w" name="new Artifact diagram" repPath="#_6cngMC6fEem8-fQsXDe-_w">
+        <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/de.fraunhofer.ipa.ros.sirius/description/ros.odesign#//@ownedViewpoints[name='component']/@ownedRepresentations[name='Artifact%20diagram']"/>
+        <target xmi:type="ros:Artifact" href="rosnodes/action_test.ros#//@package.0/@artifact.0"/>
+      </ownedRepresentationDescriptors>
+    </ownedViews>
+  </viewpoint:DAnalysis>
+  <diagram:DSemanticDiagram xmi:id="_6ctm0C6fEem8-fQsXDe-_w" name="new Artifact diagram" uid="_6cngMC6fEem8-fQsXDe-_w">
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_6ctm0S6fEem8-fQsXDe-_w" source="DANNOTATION_CUSTOMIZATION_KEY">
+      <data xmi:type="diagram:ComputedStyleDescriptionRegistry" xmi:id="_6ctm0i6fEem8-fQsXDe-_w"/>
+    </ownedAnnotationEntries>
+    <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_6cztcC6fEem8-fQsXDe-_w" source="GMF_DIAGRAMS">
+      <data xmi:type="notation:Diagram" xmi:id="_6cztcS6fEem8-fQsXDe-_w" type="Sirius" element="_6ctm0C6fEem8-fQsXDe-_w" measurementUnit="Pixel">
+        <children xmi:type="notation:Node" xmi:id="_65SOEC6fEem8-fQsXDe-_w" type="2002" element="_65N8oC6fEem8-fQsXDe-_w">
+          <children xmi:type="notation:Node" xmi:id="_65S1IC6fEem8-fQsXDe-_w" type="5006"/>
+          <children xmi:type="notation:Node" xmi:id="_65S1IS6fEem8-fQsXDe-_w" type="7001">
+            <styles xmi:type="notation:SortingStyle" xmi:id="_65S1Ii6fEem8-fQsXDe-_w"/>
+            <styles xmi:type="notation:FilteringStyle" xmi:id="_65S1Iy6fEem8-fQsXDe-_w"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_AGB_wC6gEem8-fQsXDe-_w" type="3012" element="_AF9HQC6gEem8-fQsXDe-_w">
+            <children xmi:type="notation:Node" xmi:id="_AGCm0C6gEem8-fQsXDe-_w" type="5010">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_AGCm0S6gEem8-fQsXDe-_w" x="-171"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_AGDN4C6gEem8-fQsXDe-_w" type="3003" element="_AF9HQS6gEem8-fQsXDe-_w">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_AGDN4S6gEem8-fQsXDe-_w" fontName="Ubuntu"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AGDN4i6gEem8-fQsXDe-_w"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_AGB_wS6gEem8-fQsXDe-_w" fontColor="1345869" fontName="Ubuntu" fontHeight="10" bold="true"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AGB_wi6gEem8-fQsXDe-_w" x="-12" y="48" width="20" height="20"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_ExQYwC6gEem8-fQsXDe-_w" type="3012" element="_ExK5MC6gEem8-fQsXDe-_w">
+            <children xmi:type="notation:Node" xmi:id="_ExQ_0C6gEem8-fQsXDe-_w" type="5010">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_ExQ_0S6gEem8-fQsXDe-_w" x="21"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_ExRm4C6gEem8-fQsXDe-_w" type="3003" element="_ExLgQC6gEem8-fQsXDe-_w">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_ExRm4S6gEem8-fQsXDe-_w" fontName="Ubuntu"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ExRm4i6gEem8-fQsXDe-_w"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_ExQYwS6gEem8-fQsXDe-_w" fontName="Ubuntu" fontHeight="10" bold="true"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ExQYwi6gEem8-fQsXDe-_w" x="365" y="108" width="20" height="20"/>
+          </children>
+          <children xmi:type="notation:Node" xmi:id="_HujQUC6gEem8-fQsXDe-_w" type="3012" element="_HugNAC6gEem8-fQsXDe-_w">
+            <children xmi:type="notation:Node" xmi:id="_Huj3YC6gEem8-fQsXDe-_w" type="5010">
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_Huj3YS6gEem8-fQsXDe-_w" x="-51"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Huj3Yi6gEem8-fQsXDe-_w" type="3003" element="_Hug0EC6gEem8-fQsXDe-_w">
+              <styles xmi:type="notation:ShapeStyle" xmi:id="_Huj3Yy6gEem8-fQsXDe-_w" fontName="Ubuntu"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Huj3ZC6gEem8-fQsXDe-_w"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_HujQUS6gEem8-fQsXDe-_w" fontColor="7490599" fontName="Ubuntu" fontHeight="10" bold="true"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HujQUi6gEem8-fQsXDe-_w" x="-12" y="168" width="20" height="20"/>
+          </children>
+          <styles xmi:type="notation:ShapeStyle" xmi:id="_65SOES6fEem8-fQsXDe-_w" fontName="Ubuntu" fontHeight="14" bold="true"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_65SOEi6fEem8-fQsXDe-_w" x="324" y="168" width="375" height="231"/>
+        </children>
+        <styles xmi:type="notation:DiagramStyle" xmi:id="_6cztci6fEem8-fQsXDe-_w"/>
+      </data>
+    </ownedAnnotationEntries>
+    <ownedDiagramElements xmi:type="diagram:DNodeContainer" xmi:id="_65N8oC6fEem8-fQsXDe-_w" name="action_test" tooltipText="ComponentDefinition">
+      <target xmi:type="ros:Node" href="rosnodes/action_test.ros#//@package.0/@artifact.0/@node"/>
+      <semanticElements xmi:type="ros:Node" href="rosnodes/action_test.ros#//@package.0/@artifact.0/@node"/>
+      <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_AF9HQC6gEem8-fQsXDe-_w" name="joint_trajectory_controller" tooltipText="Topic" width="2" height="2" resizeKind="NSEW">
+        <target xmi:type="ros:ActionClient" href="rosnodes/action_test.ros#//@package.0/@artifact.0/@node/@actionclient.0"/>
+        <semanticElements xmi:type="ros:ActionClient" href="rosnodes/action_test.ros#//@package.0/@artifact.0/@node/@actionclient.0"/>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_AF9HQS6gEem8-fQsXDe-_w" labelSize="10" showIcon="false" labelColor="77,137,20" borderColor="77,137,20" width="2" height="2" color="77,137,20">
+          <labelFormat>bold</labelFormat>
+          <description xmi:type="style:SquareDescription" href="platform:/plugin/de.fraunhofer.ipa.ros.sirius/description/ros.odesign#//@ownedViewpoints[name='component']/@ownedRepresentations[name='Artifact%20diagram']/@defaultLayer/@containerMappings[name='Node']/@borderedNodeMappings[name='RosActionClient']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/de.fraunhofer.ipa.ros.sirius/description/ros.odesign#//@ownedViewpoints[name='component']/@ownedRepresentations[name='Artifact%20diagram']/@defaultLayer/@containerMappings[name='Node']/@borderedNodeMappings[name='RosActionClient']"/>
+      </ownedBorderedNodes>
+      <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_ExK5MC6gEem8-fQsXDe-_w" name="diagnostics" tooltipText="Topic" width="2" height="2" resizeKind="NSEW">
+        <target xmi:type="ros:Publisher" href="rosnodes/action_test.ros#//@package.0/@artifact.0/@node/@publisher.0"/>
+        <semanticElements xmi:type="ros:Publisher" href="rosnodes/action_test.ros#//@package.0/@artifact.0/@node/@publisher.0"/>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_ExLgQC6gEem8-fQsXDe-_w" labelSize="10" showIcon="false" width="2" height="2" color="0,0,0">
+          <labelFormat>bold</labelFormat>
+          <description xmi:type="style:SquareDescription" href="platform:/plugin/de.fraunhofer.ipa.ros.sirius/description/ros.odesign#//@ownedViewpoints[name='component']/@ownedRepresentations[name='Artifact%20diagram']/@defaultLayer/@containerMappings[name='Node']/@borderedNodeMappings[name='RosPublisher']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/de.fraunhofer.ipa.ros.sirius/description/ros.odesign#//@ownedViewpoints[name='component']/@ownedRepresentations[name='Artifact%20diagram']/@defaultLayer/@containerMappings[name='Node']/@borderedNodeMappings[name='RosPublisher']"/>
+      </ownedBorderedNodes>
+      <ownedBorderedNodes xmi:type="diagram:DNode" xmi:id="_HugNAC6gEem8-fQsXDe-_w" name="init" tooltipText="Topic" width="2" height="2" resizeKind="NSEW">
+        <target xmi:type="ros:ServiceClient" href="rosnodes/action_test.ros#//@package.0/@artifact.0/@node/@serviceclient.0"/>
+        <semanticElements xmi:type="ros:ServiceClient" href="rosnodes/action_test.ros#//@package.0/@artifact.0/@node/@serviceclient.0"/>
+        <ownedStyle xmi:type="diagram:Square" xmi:id="_Hug0EC6gEem8-fQsXDe-_w" labelSize="10" showIcon="false" labelColor="39,76,114" borderColor="39,76,114" width="2" height="2" color="39,76,114">
+          <labelFormat>bold</labelFormat>
+          <description xmi:type="style:SquareDescription" href="platform:/plugin/de.fraunhofer.ipa.ros.sirius/description/ros.odesign#//@ownedViewpoints[name='component']/@ownedRepresentations[name='Artifact%20diagram']/@defaultLayer/@containerMappings[name='Node']/@borderedNodeMappings[name='RosServiceClient']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/de.fraunhofer.ipa.ros.sirius/description/ros.odesign#//@ownedViewpoints[name='component']/@ownedRepresentations[name='Artifact%20diagram']/@defaultLayer/@containerMappings[name='Node']/@borderedNodeMappings[name='RosServiceClient']"/>
+      </ownedBorderedNodes>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_65OjsC6fEem8-fQsXDe-_w" labelSize="14" iconPath="/de.fraunhofer.ipa.ros.sirius/icons/ros_logo.png" borderSize="1" borderSizeComputationExpression="1" foregroundColor="114,159,207">
+        <labelFormat>bold</labelFormat>
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/de.fraunhofer.ipa.ros.sirius/description/ros.odesign#//@ownedViewpoints[name='component']/@ownedRepresentations[name='Artifact%20diagram']/@defaultLayer/@containerMappings[name='Node']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/de.fraunhofer.ipa.ros.sirius/description/ros.odesign#//@ownedViewpoints[name='component']/@ownedRepresentations[name='Artifact%20diagram']/@defaultLayer/@containerMappings[name='Node']"/>
+    </ownedDiagramElements>
+    <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/de.fraunhofer.ipa.ros.sirius/description/ros.odesign#//@ownedViewpoints[name='component']/@ownedRepresentations[name='Artifact%20diagram']"/>
+    <filterVariableHistory xmi:type="diagram:FilterVariableHistory" xmi:id="_6ctm1C6fEem8-fQsXDe-_w"/>
+    <activatedLayers xmi:type="description_1:Layer" href="platform:/plugin/de.fraunhofer.ipa.ros.sirius/description/ros.odesign#//@ownedViewpoints[name='component']/@ownedRepresentations[name='Artifact%20diagram']/@defaultLayer"/>
+    <target xmi:type="ros:Artifact" href="rosnodes/action_test.ros#//@package.0/@artifact.0"/>
+  </diagram:DSemanticDiagram>
+</xmi:XMI>

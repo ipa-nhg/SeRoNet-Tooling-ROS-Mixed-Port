@@ -1,0 +1,6 @@
+ComponentInterface { name 'action_test' 
+    RosPublishers{
+        RosPublisher 'diagnostics' { RefPublisher 'action_test.action_test.action_test.diagnostics'}}
+    RosSrvClients{
+        RosServiceClient 'init' { RefClient 'action_test.action_test.action_test.init'}}
+RosActionClients { RosActionClient joint_trajectory_controller { ns "" RefClient "action_test.action_test.action_test.joint_trajectory_controller" } } }

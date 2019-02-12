@@ -1,0 +1,3 @@
+PackageSet { package {
+	CatkinPackage action_test{ artifact {
+		Artifact  action_test { node Node { name action_test publisher { Publisher { name diagnostics message "diagnostic_msgs.DiagnosticArray" } } serviceclient { ServiceClient { name init service "std_srvs.Trigger" } } actionclient { ActionClient { name joint_trajectory_controller action "control_msgs.FollowJointTrajectory" } } } } }}}}
