@@ -1,0 +1,3 @@
+[submodule "ros-model"]
+	path = ros-model
+	url = https://github.com/ipa320/ros-model

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: de.seronet_projekt.componentGateway.generator
 Bundle-SymbolicName: de.seronet_projekt.ros.componentGateway.generator;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Vendor: SeRoNet (www.seronet-projekt.de)
 Export-Package: de.seronet_projekt.ros.componentGateway.generator;uses:="componentInterface,org.eclipse.xtext.generator,org.eclipse.emf.ecore.resource"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
