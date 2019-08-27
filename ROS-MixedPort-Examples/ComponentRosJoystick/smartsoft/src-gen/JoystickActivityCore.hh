@@ -26,6 +26,7 @@
 // include all interaction-observer interfaces
 #include <JoystickActivityObserverInterface.hh>
 
+#include "OpcUaOpcUaClient4.hh"
 
 class JoystickActivityCore
 :	public SmartACE::ManagedTask
@@ -53,6 +54,7 @@ protected:
 	// this method is meant to be used in derived classes
 	Smart::StatusCode joystickServiceOutPut(CommBasicObjects::CommJoystick &joystickServiceOutDataObject);
 	
+	OPCUA::OpcUaClient4 *opcUaClient4;
 	
 /**
  * Implementation of the Subject part of an InteractionObserver

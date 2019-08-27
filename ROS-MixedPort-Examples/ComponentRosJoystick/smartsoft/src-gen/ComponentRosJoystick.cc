@@ -34,6 +34,7 @@ ComponentRosJoystick::ComponentRosJoystick()
 	joystickActivity = NULL;
 	joystickActivityTrigger = NULL;
 	joystickServiceOut = NULL;
+	opcUaClient4 = NULL;
 	//_joy = NULL;
 	stateChangeHandler = NULL;
 	stateSlave = NULL;
@@ -58,6 +59,8 @@ ComponentRosJoystick::ComponentRosJoystick()
 	
 	// initialize members of ComponentRosJoystickROSExtension
 	rosPorts = 0;
+	
+	// initialize members of SeRoNetSDKComponentGeneratorExtension
 	
 	// initialize members of PlainOpcUaComponentRosJoystickExtension
 	
@@ -147,6 +150,8 @@ void ComponentRosJoystick::init(int argc, char *argv[])
 		
 		
 		// initializations of ComponentRosJoystickROSExtension
+		
+		// initializations of SeRoNetSDKComponentGeneratorExtension
 		
 		// initializations of PlainOpcUaComponentRosJoystickExtension
 		
@@ -347,6 +352,8 @@ void ComponentRosJoystick::fini()
 	
 	// destruction of ComponentRosJoystickROSExtension
 	
+	// destruction of SeRoNetSDKComponentGeneratorExtension
+	
 	// destruction of PlainOpcUaComponentRosJoystickExtension
 	
 }
@@ -450,7 +457,22 @@ void ComponentRosJoystick::loadParameter(int argc, char *argv[])
 		
 		// load parameters for ComponentRosJoystickROSExtension
 		
+		// load parameters for SeRoNetSDKComponentGeneratorExtension
+		
 		// load parameters for PlainOpcUaComponentRosJoystickExtension
+		// load parameteters for OpcUaDeviceClient OpcUaClient4
+		if(parameter.checkIfParameterExists("OpcUaClient4", "autoConnect")) {
+			parameter.getBoolean("OpcUaClient4", "autoConnect", connections.opcUaClient4.autoConnect);
+		}
+		if(parameter.checkIfParameterExists("OpcUaClient4", "rootObjectPath")) {
+			parameter.getString("OpcUaClient4", "rootObjectPath", connections.opcUaClient4.rootObjectPath);
+		}
+		if(parameter.checkIfParameterExists("OpcUaClient4", "deviceURI")) {
+			parameter.getString("OpcUaClient4", "deviceURI", connections.opcUaClient4.deviceURI);
+		}
+		if(parameter.checkIfParameterExists("OpcUaClient4", "opcuaXmlFile")) {
+			parameter.getString("OpcUaClient4", "opcuaXmlFile", connections.opcUaClient4.opcuaXmlFile);
+		}
 		
 		
 		// load parameters for all registered component-extensions

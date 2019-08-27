@@ -30,6 +30,7 @@ JoystickActivityCore::JoystickActivityCore(Smart::IComponent *comp, const bool &
 ,	taskLoggingId(0)
 ,	currentUpdateCount(0)
 {
+	opcUaClient4 = COMP->opcUaClient4;
 }
 
 JoystickActivityCore::~JoystickActivityCore()

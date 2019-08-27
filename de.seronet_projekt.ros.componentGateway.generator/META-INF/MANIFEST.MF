@@ -8,7 +8,10 @@ Export-Package: de.seronet_projekt.ros.componentGateway.generator;uses:="compone
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: javax.inject;version="1.0.0",
  org.eclipse.ui.handlers,
- org.eclipse.xtext.ui.resource
+ org.eclipse.xtext.ui.resource,
+ org.smartmdsd.utils.factories,
+ org.smartmdsd.utils.wizards,
+ rosInterfacesPool
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.seronet_projekt.ros.componentGateway.Activator
 Require-Bundle: org.eclipse.xtext.builder,
@@ -16,4 +19,6 @@ Require-Bundle: org.eclipse.xtext.builder,
  de.fraunhofer.ipa.componentInterface,
  de.fraunhofer.ipa.componentInterface.xtext.ui,
  de.fraunhofer.ipa.ros.xtext.ui,
- de.fraunhofer.ipa.ros
+ de.fraunhofer.ipa.ros,
+ de.seronet_projekt.ros.interfaces.pool;bundle-version="0.1.0",
+ de.seronet_projekt.ros.interfaces.pool.xtext.ui;bundle-version="1.0.0"

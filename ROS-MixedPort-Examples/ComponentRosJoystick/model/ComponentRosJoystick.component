@@ -1,11 +1,13 @@
-ComponentDefinition ComponentRosJoystick logo "/ComponentRosJoystick/model/logo.png"
+ComponentDefinition ComponentRosJoystick 
 {
 	Activity JoystickActivity
 	{
 		MixedPortROSLink _joy
+		OpcUaClientLink OpcUaClient4
 		DefaultTrigger PeriodicTimer 10.0 Hz
 	}
 	OutputPort JoystickServiceOut implements CommBasicObjects.JoystickService realizedBy JoystickActivity {
-	}
+	SupportedMiddleware OpcUa_SeRoNet }
 	MixedPortROS _joy
+OpcUaDeviceClient OpcUaClient4 { deviceURI "opc.tcp://localhost:4840" autoConnect opcuaXmlFile "/ComponentRosJoystick/model/JoystickNS.xml" }
 }

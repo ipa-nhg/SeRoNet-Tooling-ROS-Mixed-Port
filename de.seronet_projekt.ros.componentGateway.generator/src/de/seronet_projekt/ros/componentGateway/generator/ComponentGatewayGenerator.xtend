@@ -16,7 +16,7 @@ class CustomOutputProvider implements IOutputConfigurationProvider {
 	override Set<OutputConfiguration> getOutputConfigurations() {
 		var OutputConfiguration default_config = new OutputConfiguration(DEFAULT_OUTPUT)
 		default_config.setDescription("DEFAULT_OUTPUT");
-		default_config.setOutputDirectory("./src-gen/");
+		default_config.setOutputDirectory("./src-gen/SeRoNetComponent/");
 		default_config.setOverrideExistingResources(true);
 		default_config.setCreateOutputDirectory(true);
 		default_config.setCleanUpDerivedResources(true);

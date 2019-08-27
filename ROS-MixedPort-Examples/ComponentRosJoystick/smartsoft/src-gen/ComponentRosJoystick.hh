@@ -32,8 +32,11 @@ class ComponentRosJoystickExtension;
 // includes for ComponentRosJoystickROSExtension
 #include "ComponentRosJoystickRosPortBaseClass.hh"
 
+// includes for SeRoNetSDKComponentGeneratorExtension
+
 // includes for PlainOpcUaComponentRosJoystickExtension
 // include plain OPC UA device clients
+#include "OpcUaOpcUaClient4.hh"
 // include plain OPC UA status servers
 
 
@@ -106,7 +109,10 @@ public:
 	// definitions of ComponentRosJoystickROSExtension
 	ComponentRosJoystickRosPortBaseClass *rosPorts;
 	
+	// definitions of SeRoNetSDKComponentGeneratorExtension
+	
 	// definitions of PlainOpcUaComponentRosJoystickExtension
+	OPCUA::OpcUaClient4 *opcUaClient4;
 	
 	
 	// define default slave ports
@@ -213,7 +219,16 @@ public:
 		
 		// -- parameters for ComponentRosJoystickROSExtension
 		
+		// -- parameters for SeRoNetSDKComponentGeneratorExtension
+		
 		// -- parameters for PlainOpcUaComponentRosJoystickExtension
+		struct OpcUaClient4_struct {
+			bool autoConnect;
+			std::string deviceURI;
+			std::string rootObjectPath;
+			std::string opcuaXmlFile;
+		} opcUaClient4;
+		
 		
 	} connections;
 };
