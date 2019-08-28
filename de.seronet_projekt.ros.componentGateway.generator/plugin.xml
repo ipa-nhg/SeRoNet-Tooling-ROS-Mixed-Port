@@ -14,7 +14,7 @@
          point="org.eclipse.ui.commands">
       <command
             id="de.seronet_projekt.ros.componentGateway.generator.command"
-            name="Generate ROS interface pool">
+            name="Generate ROS-SR Mixed Port">
       </command>
    </extension>
    <extension

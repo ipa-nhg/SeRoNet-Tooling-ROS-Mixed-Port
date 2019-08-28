@@ -76,7 +76,7 @@ class CommunicationObjectsTransformationGenerator extends AbstractGenerator {
  				//for (package : packages.package){
 				fsa.generateFile("ROS"+capitalize(repositoryName)+".types",CustomOutputProvider::DEFAULT_OUTPUT,compile_communication_objects_to_type(packages, capitalize(repositoryName)))
 				//}
-				fsa.generateFile("ROS"+capitalize(repositoryName)+".services",CustomOutputProvider::DEFAULT_OUTPUT,compile_communication_objects_to_services(packages,"ROS"+capitalize(repositoryName)))
+				fsa.generateFile("ROS"+capitalize(repositoryName)+".services",CustomOutputProvider::DEFAULT_OUTPUT,compile_communication_objects_to_services(packages, capitalize(repositoryName)))
 				
 			}
  		}//}
