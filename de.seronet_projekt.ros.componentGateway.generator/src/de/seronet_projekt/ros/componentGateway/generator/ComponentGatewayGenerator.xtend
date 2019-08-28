@@ -16,7 +16,7 @@ class CustomOutputProvider implements IOutputConfigurationProvider {
 	override Set<OutputConfiguration> getOutputConfigurations() {
 		var OutputConfiguration default_config = new OutputConfiguration(DEFAULT_OUTPUT)
 		default_config.setDescription("DEFAULT_OUTPUT");
-		default_config.setOutputDirectory("./src-gen/");
+		default_config.setOutputDirectory("./src-gen/SeRoNetComponent/");
 		default_config.setOverrideExistingResources(true);
 		default_config.setCreateOutputDirectory(true);
 		default_config.setCleanUpDerivedResources(true);
@@ -48,16 +48,16 @@ RosInterfacesPool {
 	RosPublisher «checkname(sub.name)»_pub { topicName "«sub.name»" type "«sub.subscriber.message.package.name».«sub.subscriber.message.name»" }
 	«ENDFOR»
 	«FOR srvserver:componentinterface.rosserviceserver»
-	RosSrvServer «checkname(srvserver.name)»_srvser { srvName "«srvserver.name»" type "«srvserver.srvserver.service.package.name».«srvserver.srvserver.service.name»" }
+	RosSrvServer «checkname(srvserver.name)»_srvcli { srvName "«srvserver.name»" type "«srvserver.srvserver.service.package.name».«srvserver.srvserver.service.name»" }
 	«ENDFOR»
 	«FOR srvclient:componentinterface.rosserviceclient»
-	RosSrvClient «checkname(srvclient.name)»_srvcli { srvName "«srvclient.name»" type "«srvclient.srvclient.service.package.name».«srvclient.srvclient.service.name»" }
+	RosSrvClient «checkname(srvclient.name)»_srvser { srvName "«srvclient.name»" type "«srvclient.srvclient.service.package.name».«srvclient.srvclient.service.name»" }
 	«ENDFOR»
 	«FOR actionserver:componentinterface.rosactionserver»
-	RosActionServer «checkname(actionserver.name)»_actser { actionName "«actionserver.name»" type "«actionserver.actserver.action.package.name».«actionserver.actserver.action.name»" }
+	RosActionServer «checkname(actionserver.name)»_actcli { actionName "«actionserver.name»" type "«actionserver.actserver.action.package.name».«actionserver.actserver.action.name»" }
 	«ENDFOR»
 	«FOR actionclient:componentinterface.rosactionclient»
-	RosActionClient «checkname(actionclient.name)»_actcli { actionName "«actionclient.name»" type "«actionclient.actclient.action.package.name».«actionclient.actclient.action.name»" }
+	RosActionClient «checkname(actionclient.name)»_actser { actionName "«actionclient.name»" type "«actionclient.actclient.action.package.name».«actionclient.actclient.action.name»" }
 	«ENDFOR»
 }
 	'''
