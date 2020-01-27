@@ -108,75 +108,103 @@ public class GenerationHandler extends AbstractHandler implements IHandler {
 				}
 
 				dialogSelect.setElements(ListofInterfaces);
-				dialogSelect.setTitle("Select a ROS interface to relay");
+				dialogSelect.setTitle("Select the ROS interfaces to relay");
+				dialogSelect.setMultipleSelection(true);
 				dialogSelect.open();
 				Object result = dialogSelect.getFirstResult();
+				Object[] results = dialogSelect.getResult();
+				String SRComponentName = "ComponentRos"+ComponentName; 
+				String RelativePathToSRComponent = "src-gen/SeRoNetComponent/"+SRComponentName+".component";
+				IFile SeRoNetComponentFile = project.getFile(RelativePathToSRComponent);
+				String RosObjectsPath = null;
+				String tmp_component="";
+				List<String> RequestHandlers = new ArrayList<>();
+				List<String> ActivityBody = new ArrayList<>();
+				List<String> SeRoNetPorts = new ArrayList<>();
+				List<String> ROSMixedPorts = new ArrayList<>();
+				
 
-				for (EObject ResultInterface: RosInterfaces) {
-					if((getViewMenuInterfaceName(ResultInterface)).equals(result)) {
-						EObject SelectedInterface = ResultInterface;
-						String SRComponentName = "ComponentRos"+ComponentName; 
-						String RelativePathToSRComponent = "src-gen/SeRoNetComponent/"+SRComponentName+".component";
-						IFile SeRoNetComponentFile = project.getFile(RelativePathToSRComponent);
+
+				for (Object result_: results) {
+					for (EObject ResultInterface: RosInterfaces) {
 						String MixedPortInterfaceName = null;
-						String SeRoNetPort = null;
-						String SRObjectsRepo = null;
-						String RosObjectsPath = null;
 						String ServiceName = null;
-						String ComponentBody ="";
-						String SeRoNetPortConfig="";
-						if (SelectedInterface.getClass().toString().contains("componentInterface.impl.RosPublisherImpl")) {
-							MixedPortInterfaceName = checkname(((RosPublisher)SelectedInterface).getName())+"_sub";
-							RosObjectsPath = ((RosPublisher)SelectedInterface).getPublisher().getMessage().getPackage().eContainer().eResource().getURI().toString();
-							ServiceName = ((RosPublisher)SelectedInterface).getPublisher().getMessage().getName()+"Service";
-							SeRoNetPort = "	OutputPort "+checkname(((RosPublisher) SelectedInterface).getName())+"Out";
-							SeRoNetPortConfig = " realizedBy "+ComponentName+"Activity {}";
-							ComponentBody = "	Activity "+ComponentName+"Activity {\n"
-									+"		MixedPortROSLink "+MixedPortInterfaceName+
-									"\n		DefaultTrigger PeriodicTimer 10.0 Hz\n"+
-							"	}";
+
+						if((getViewMenuInterfaceName(ResultInterface)).equals(result_.toString())) {
+							EObject SelectedInterface = ResultInterface;
+
+							if (SelectedInterface.getClass().toString().contains("componentInterface.impl.RosPublisherImpl")) {
+								MixedPortInterfaceName = checkname(((RosPublisher)SelectedInterface).getName())+"_sub";
+								RosObjectsPath = ((RosPublisher)SelectedInterface).getPublisher().getMessage().getPackage().eContainer().eResource().getURI().toString();
+								ServiceName = ((RosPublisher)SelectedInterface).getPublisher().getMessage().getName()+"Service";
+								
+								ROSMixedPorts.add("MixedPortROS "+MixedPortInterfaceName);
+								SeRoNetPorts.add("OutputPort "+checkname(((RosPublisher) SelectedInterface).getName())+"Out implements "
+								+ ObjectsConversion(RosObjectsPath,ServiceName) + " realizedBy "+ComponentName+"Activity {}");
+								ActivityBody.add("MixedPortROSLink "+MixedPortInterfaceName);
+
+							}
+							if (SelectedInterface.getClass().toString().contains("componentInterface.impl.RosSubscriberImpl")) {
+								MixedPortInterfaceName = checkname(((RosSubscriber) SelectedInterface).getName())+"_pub";
+								RosObjectsPath = ((RosSubscriber)SelectedInterface).getSubscriber().getMessage().getPackage().eContainer().eResource().getURI().toString();
+								ServiceName = ((RosSubscriber)SelectedInterface).getSubscriber().getMessage().getName()+"Service";
+								
+								
+								ROSMixedPorts.add("MixedPortROS "+MixedPortInterfaceName);
+								SeRoNetPorts.add("InputPort "+checkname(((RosSubscriber) SelectedInterface).getName())+"In implements "
+								+ObjectsConversion(RosObjectsPath,ServiceName)+" {}");
+								ActivityBody.add("MixedPortROSLink "+MixedPortInterfaceName);
+								ActivityBody.add("InputPortLink "+checkname(((RosSubscriber) SelectedInterface).getName())+"In {}");
+
+							}
+							if (SelectedInterface.getClass().toString().contains("componentInterface.impl.RosServiceClientImpl")) {
+								MixedPortInterfaceName = checkname(((RosServiceClient)SelectedInterface).getName())+"_srvser";
+								RosObjectsPath = ((RosServiceClient)SelectedInterface).getSrvclient().getService().getPackage().eContainer().eResource().getURI().toString();
+								ServiceName = ((RosServiceClient)SelectedInterface).getSrvclient().getService().getName()+"QueryService";
+								
+								ROSMixedPorts.add("MixedPortROS "+MixedPortInterfaceName);
+								SeRoNetPorts.add("RequestPort "+checkname(((RosServiceClient) SelectedInterface).getName())+"ServiceReq implements "
+								+ObjectsConversion(RosObjectsPath,ServiceName)+" {}");
+								ActivityBody.add("MixedPortROSLink "+MixedPortInterfaceName);
+								ActivityBody.add("RequestPortLink "+checkname(((RosServiceClient) SelectedInterface).getName())+"ServiceReq");
+
+							}
+							if (SelectedInterface.getClass().toString().contains("componentInterface.impl.RosServiceServerImpl")) {
+								MixedPortInterfaceName = checkname(((RosServiceServer)SelectedInterface).getName())+"_srvcli";
+								RosObjectsPath = ((RosServiceServer)SelectedInterface).getSrvserver().getService().getPackage().eContainer().eResource().getURI().toString();
+								ServiceName = ((RosServiceServer)SelectedInterface).getSrvserver().getService().getName()+"QueryService";
+								
+								ROSMixedPorts.add("MixedPortROS "+MixedPortInterfaceName);
+								SeRoNetPorts.add("AnswerPort "+checkname(((RosServiceServer) SelectedInterface).getName())+"ServiceAnsw implements "
+								+ObjectsConversion(RosObjectsPath,ServiceName)+" {}");
+								RequestHandlers.add("	RequestHandler "+checkname(((RosServiceServer)SelectedInterface).getName())+"AnswHandler triggeredFrom "+checkname(((RosServiceServer) SelectedInterface).getName())+ "ServiceAnsw {\n"
+										+ "		MixedPortROSLink " +MixedPortInterfaceName+"\n	}");
+							}
+						}}}
+						tmp_component="ComponentDefinition "+SRComponentName+" {\n\n";
+						for (String RosMixedPort:ROSMixedPorts) {
+							tmp_component+="	"+RosMixedPort+"\n";
+						} 
+						tmp_component+="\n";
+						for (String SeRoNetPort:SeRoNetPorts) {
+							tmp_component+="	"+SeRoNetPort+"\n";
 						}
-						if (SelectedInterface.getClass().toString().contains("componentInterface.impl.RosSubscriberImpl")) {
-							MixedPortInterfaceName = checkname(((RosSubscriber) SelectedInterface).getName())+"_pub";
-							RosObjectsPath = ((RosSubscriber)SelectedInterface).getSubscriber().getMessage().getPackage().eContainer().eResource().getURI().toString();
-							ServiceName = ((RosSubscriber)SelectedInterface).getSubscriber().getMessage().getName()+"Service";
-							SeRoNetPort = "	InputPort "+checkname(((RosSubscriber) SelectedInterface).getName())+"In";
-							SeRoNetPortConfig = " {}";
-							ComponentBody = "	Activity "+ComponentName+"Activity {\n"
-									+"		MixedPortROSLink "+MixedPortInterfaceName
-									+"\n		InputPortLink "+checkname(((RosSubscriber) SelectedInterface).getName())+"In {}"
-								    +"\n		DefaultTrigger PeriodicTimer 10.0 Hz\n"+
-							"	}";
+						tmp_component+="\n";
+						for (String RequestHandler:RequestHandlers) {
+							tmp_component+=RequestHandler+"\n";
 						}
-						if (SelectedInterface.getClass().toString().contains("componentInterface.impl.RosServiceClientImpl")) {
-							MixedPortInterfaceName = checkname(((RosServiceClient)SelectedInterface).getName())+"_srvser";
-							RosObjectsPath = ((RosServiceClient)SelectedInterface).getSrvclient().getService().getPackage().eContainer().eResource().getURI().toString();
-							ServiceName = ((RosServiceClient)SelectedInterface).getSrvclient().getService().getName()+"QueryService";
-							SeRoNetPort = "	RequestPort "+checkname(((RosServiceClient) SelectedInterface).getName())+"ServiceReq";
-							SeRoNetPortConfig = " {}";
-							ComponentBody = "	Activity "+ComponentName+"Activity {\n"
-									+ "		MixedPortROSLink "+MixedPortInterfaceName+"\n"
-									+ "		RequestPortLink "+checkname(((RosServiceClient) SelectedInterface).getName())+"ServiceReq"+"\n"
-							+"	}";
+						tmp_component+="\n";
+						if (!ActivityBody.isEmpty()){
+							tmp_component+="	Activity "+ComponentName+"Activity {\n";
+							for(String Activitybody:ActivityBody) {
+								tmp_component+="		"+Activitybody+"\n";
+							}
+							tmp_component+="	}\n";
 						}
-						if (SelectedInterface.getClass().toString().contains("componentInterface.impl.RosServiceServerImpl")) {
-							MixedPortInterfaceName = checkname(((RosServiceServer)SelectedInterface).getName())+"_srvcli";
-							RosObjectsPath = ((RosServiceServer)SelectedInterface).getSrvserver().getService().getPackage().eContainer().eResource().getURI().toString();
-							ServiceName = ((RosServiceServer)SelectedInterface).getSrvserver().getService().getName()+"QueryService";
-							SeRoNetPort = "	AnswerPort "+checkname(((RosServiceServer) SelectedInterface).getName())+"ServiceAnsw";
-							SeRoNetPortConfig = " {}";
-							ComponentBody = "	RequestHandler "+ComponentName+"AnswHandler triggeredFrom "+checkname(((RosServiceServer) SelectedInterface).getName())+"ServiceAnsw {\n"
-									+"		MixedPortROSLink "+MixedPortInterfaceName
-							+"\n	}";
-							
-						}
-						
-						SRObjectsRepo = "ROS"+capitalize(RosObjectsPath.substring(RosObjectsPath.lastIndexOf("/")+1,RosObjectsPath.lastIndexOf(".ros")));
-						byte[] bytes = ("ComponentDefinition "+SRComponentName+" {\n\n"+ 
-						"	MixedPortROS "+MixedPortInterfaceName+"\n\n"+
-						SeRoNetPort +" implements "+SRObjectsRepo+"."+ServiceName+SeRoNetPortConfig+"\n\n"+
-						ComponentBody+"\n"+
-						"}").getBytes();
+						tmp_component+="\n";
+						tmp_component+="}";
+
+						byte[] bytes = (tmp_component).getBytes();
 						
 						InputStream source = new ByteArrayInputStream(bytes);
 						try {
@@ -197,8 +225,6 @@ public class GenerationHandler extends AbstractHandler implements IHandler {
 						}
 					}
 				}
-		    }
-	      }
 	    }
 
 	    return null;
@@ -208,6 +234,10 @@ public class GenerationHandler extends AbstractHandler implements IHandler {
 		   return Character.toUpperCase(line.charAt(0)) + line.substring(1);
 		}
 	
+	
+    private String ObjectsConversion (String RosObjectsPath, String ServiceName) {
+    	return "ROS"+capitalize(RosObjectsPath.substring(RosObjectsPath.lastIndexOf("/")+1,RosObjectsPath.lastIndexOf(".ros")))+"."+ServiceName;
+    }
 	private List<EObject> getInterfaces(ComponentInterface componentInterface_model) {
 		  List<EObject> ROSInterfaces = new ArrayList<EObject>();
 		  for (RosPublisher RosPub: componentInterface_model.getRospublisher()) {
