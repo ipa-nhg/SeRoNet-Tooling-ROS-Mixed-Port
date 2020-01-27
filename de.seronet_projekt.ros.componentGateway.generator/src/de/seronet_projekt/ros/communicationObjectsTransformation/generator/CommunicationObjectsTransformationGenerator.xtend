@@ -78,6 +78,7 @@ class CommunicationObjectsTransformationGenerator extends AbstractGenerator {
 	Class<? extends EObject> rostypeClass
 	String crossref_container
 	String crossref_repository_name
+	String dummy_msg = "\n	dummy : CommBasicObjects.CommVoid"
 	int i
 	List<String> EnumerationList
 	
@@ -107,7 +108,7 @@ CommObjectsRepository ROS«capitalize(repositoryName)» version 1.0.0 {
 «IF !Arrays.asList("UInt8","UInt16","UInt64","Int8","Int16","UInt32","Int32","Int64","Float","Double","String","Boolean").contains(Spec.name)»
 	
 «IF Spec.class==TopicSpecImpl && Spec.eContents.length >0»
-CommObject «capitalize(rosPackage.name)»_«Spec.name» {
+CommObject «capitalize(rosPackage.name)»_«Spec.name» {«checkEmpty(Spec.eContents().get(0).eContents)»
 	«FOR message:Spec.eContents()»«clear_enumeration()»
 	«FOR msg_part:message.eContents»
 	«IF ((getData(msg_part.toString())).length > 0) && (mapROStoSR2(msg_part.eContents().get(0), rosPackage.name, repositoryName).length > 0)»
@@ -121,7 +122,7 @@ CommObject «capitalize(rosPackage.name)»_«Spec.name» {
 }
 «ENDIF»	
 «IF Spec.class==ServiceSpecImpl && Spec.eContents.length >0»
-CommObject «capitalize(rosPackage.name)»_«Spec.name»Request {
+CommObject «capitalize(rosPackage.name)»_«Spec.name»Request {«checkEmpty(Spec.eContents.get(0).eContents)»
 	«FOR msg_part:Spec.eContents.get(0).eContents»
 	«IF ((getData(msg_part.toString())).length > 0) && (mapROStoSR2(msg_part.eContents().get(0), rosPackage.name,repositoryName).length > 0 )»
 	«getData(msg_part.toString())» : «mapROStoSR2(msg_part.eContents().get(0), rosPackage.name,repositoryName)»
@@ -129,7 +130,7 @@ CommObject «capitalize(rosPackage.name)»_«Spec.name»Request {
 «ENDFOR»
 }
 
-CommObject «capitalize(rosPackage.name)»_«Spec.name»Response {
+CommObject «capitalize(rosPackage.name)»_«Spec.name»Response {«checkEmpty(Spec.eContents.get(1).eContents)»
 	«FOR msg_part:Spec.eContents.get(1).eContents»
 	«IF ((getData(msg_part.toString())).length > 0) && (mapROStoSR2(msg_part.eContents().get(0), rosPackage.name,repositoryName).length > 0 )»
 	«getData(msg_part.toString())» : «mapROStoSR2(msg_part.eContents().get(0), rosPackage.name,repositoryName)»
@@ -151,6 +152,11 @@ Enumeration «capitalize(rosPackage.name)»_«Spec.name»Type {
 «ENDFOR»
 }
 '''
+	def String checkEmpty(List<EObject> msg) {
+		if (msg.length==0){
+			return dummy_msg; 
+		}
+	}
 
 	def void clear_enumeration(){
 		EnumerationList = new ArrayList
