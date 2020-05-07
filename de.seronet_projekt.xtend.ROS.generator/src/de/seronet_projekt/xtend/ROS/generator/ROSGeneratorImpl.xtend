@@ -43,22 +43,25 @@ import org.eclipse.xtext.generator.IGeneratorContext
 import com.google.inject.Inject
 import org.ecore.component.componentDefinition.ComponentDefinition
 import org.ecore.component.seronetExtension.MixedPortROS
+import de.seronet_projekt.xtend.ROS.generator.MixedPortROSGenHelpers
 
 class ROSGeneratorImpl extends AbstractGenerator {
 	@Inject extension ROS_CMake;
 	@Inject extension ROS_package;
 	@Inject extension ROS_ComponentExtension;
 	@Inject extension ROS_Callbacks;
+	@Inject extension MixedPortROSGenHelpers;
 	
 	override doGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for(comp: input.allContents.toIterable.filter(ComponentDefinition)) {
 			if(comp.elements.exists[it instanceof MixedPortROS]) {
-				// generate the callback interface header
-				fsa.generateFile(comp.rosPortCallbacksInterfaceHeaderFile, comp.compileRosPortCallbacksInterfaceHeader)
-				// generate once the callback user-implementation class
-				fsa.generateFile(comp.rosPortCallbacksUserClassHeaderFile, ExtendedOutputConfigurationProvider::SRC_OUTPUT, comp.compileRosPortCallbacksUserClassHeader)
-				fsa.generateFile(comp.rosPortCallbacksUserClassSourceFile, ExtendedOutputConfigurationProvider::SRC_OUTPUT, comp.compileRosPortCallbacksUserClassSource)
-				
+				if( comp.hasRosSubscribers || comp.hasRosSvrServers) {
+					// generate the callback interface header
+					fsa.generateFile(comp.rosPortCallbacksInterfaceHeaderFile, comp.compileRosPortCallbacksInterfaceHeader)
+					// generate once the callback user-implementation class
+					fsa.generateFile(comp.rosPortCallbacksUserClassHeaderFile, ExtendedOutputConfigurationProvider::SRC_OUTPUT, comp.compileRosPortCallbacksUserClassHeader)
+					fsa.generateFile(comp.rosPortCallbacksUserClassSourceFile, ExtendedOutputConfigurationProvider::SRC_OUTPUT, comp.compileRosPortCallbacksUserClassSource)
+				}
 				// generate the Component Extension C++ class
 				fsa.generateFile(comp.rosPortBaseClassHeaderFile, comp.compileRosPortBaseClassHeader)
 				fsa.generateFile(comp.rosPortExtensionHeaderFilename, comp.compileRosPortExtensionHeader)
@@ -70,5 +73,4 @@ class ROSGeneratorImpl extends AbstractGenerator {
 			}
 		}
 	}
-	
 }

@@ -26,17 +26,17 @@ public class ROSActivityGeneratorExtension implements ActivityGeneratorExtension
 	}
 	
 	@Override
-	public CharSequence getHeaderIncludes(Activity activity) {
-		return impl.getHeaderIncludes(activity);
+	public CharSequence getUserHeaderIncludes(Activity activity) {
+		return impl.getUserHeaderIncludes(activity);
 	}
 
 	@Override
-	public CharSequence getClassMemberPublicDefinition(Activity activity) {
-		return impl.getClassMemberPublicDefinition(activity);
+	public CharSequence getUserClassMemberPublicDefinition(Activity activity) {
+		return impl.getUserClassMemberPublicDefinition(activity);
 	}
 	
 	@Override
-	public CharSequence getSourceImplementation(Activity activity) {
-		return impl.getSourceImplementation(activity);
+	public CharSequence getUserSourceImplementation(Activity activity) {
+		return impl.getUserSourceImplementation(activity);
 	}
 }

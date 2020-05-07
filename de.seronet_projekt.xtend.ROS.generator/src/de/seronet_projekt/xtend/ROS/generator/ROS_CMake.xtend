@@ -26,7 +26,9 @@ class ROS_CMake {
 	set(ROS_INCLUDES ${LOCAL_INCLUDES} PARENT_SCOPE)
 	
 	LIST(APPEND SRCS ${CMAKE_CURRENT_SOURCE_DIR}/«comp.rosPortExtensionSourceFilename»)
+	«IF comp.hasRosSubscribers || comp.hasRosSvrServers»
 	LIST(APPEND SRCS ${CMAKE_CURRENT_SOURCE_DIR}/../src/«comp.rosPortCallbacksUserClassSourceFile»)
+	«ENDIF»
 	
 	set(ROS_SRCS ${SRCS} PARENT_SCOPE)
 	

@@ -42,8 +42,16 @@ import rosInterfacesPool.RosService
 import rosInterfacesPool.RosAction
 import rosInterfacesPool.RosActionClient
 import rosInterfacesPool.RosActionServer
+import rosInterfacesPool.RosPublisher
+import rosInterfacesPool.RosSubscriber
+import rosInterfacesPool.RosSrvClient
+import rosInterfacesPool.RosSrvServer
+import java.util.ArrayList
 
 class MixedPortROSGenHelpers {
+	
+	ArrayList<String> unique_dependencies = new ArrayList<String>();
+	
 	def Iterable<MixedPortROS> getAllROSPorts(ComponentDefinition comp) {
 		return comp.elements.filter(MixedPortROS).sortBy[name]
 	}
@@ -75,22 +83,84 @@ class MixedPortROSGenHelpers {
 		return typeString
 	}
 	
-	def Iterable<String> getAllPackageStrings(ComponentDefinition comp) {
-		return comp.allROSPorts.map[it.packageString];
+	def Iterable<String> getAllPackageStrings(ComponentDefinition comp) {		
+   		for (String element:comp.allROSPorts.map[it.packageString]){
+   			if(!unique_dependencies.contains(element)){
+   				unique_dependencies.add(element);
+   				}
+   		}
+		return unique_dependencies;
+	}
+
+	def Boolean hasRosPublishers(ComponentDefinition comp){
+		return comp.allROSPorts.exists[it.port instanceof RosPublisher]
+	}
+
+	def Boolean hasRosSubscribers(ComponentDefinition comp){
+		return comp.allROSPorts.exists[it.port instanceof RosSubscriber]
+	}
+
+	def Boolean hasRosSvrClients(ComponentDefinition comp){
+		return comp.allROSPorts.exists[it.port instanceof RosSrvClient]
+	}
+
+	def Boolean hasRosSvrServers(ComponentDefinition comp){
+		return comp.allROSPorts.exists[it.port instanceof RosSrvServer]
 	}
 	
 	def Boolean hasActionClients(ComponentDefinition comp) {
 		return comp.allROSPorts.exists[it.port instanceof RosActionClient]
 	}
-	
+
 	def Boolean hasActionServers(ComponentDefinition comp) {
 		return comp.allROSPorts.exists[it.port instanceof RosActionServer]
 	}
-	
-	def Boolean isROSAction(MixedPortROS mpr) {
-		return (mpr.port instanceof RosAction) 
+
+	def Boolean isROSPublisher(MixedPortROS mpr) {
+		return (mpr.port instanceof RosPublisher) 
 	}
-	def Iterable<MixedPortROS> getROSActions(ComponentDefinition comp) {
-		return comp.allROSPorts.filter[it.isROSAction]
+
+	def Boolean isROSSubscriber(MixedPortROS mpr) {
+		return (mpr.port instanceof RosSubscriber) 
+	}
+
+	def Boolean isROSSvrClient(MixedPortROS mpr) {
+		return (mpr.port instanceof RosSrvClient) 
+	}
+
+	def Boolean isROSSvrServer(MixedPortROS mpr) {
+		return (mpr.port instanceof RosSrvServer) 
+	}
+
+	def Boolean isROSActionClient(MixedPortROS mpr) {
+		return (mpr.port instanceof RosSrvClient) 
+	}
+
+	def Boolean isROSActionServer(MixedPortROS mpr) {
+		return (mpr.port instanceof RosSrvServer) 
+	}
+	
+	def Iterable<MixedPortROS> getROSPublishers(ComponentDefinition comp) {
+		return comp.allROSPorts.filter[it.isROSPublisher]
+	}
+
+	def Iterable<MixedPortROS> getROSSubscribers(ComponentDefinition comp) {
+		return comp.allROSPorts.filter[it.isROSSubscriber]
+	}
+
+	def Iterable<MixedPortROS> getROSSrvClient(ComponentDefinition comp) {
+		return comp.allROSPorts.filter[it.isROSSvrClient]
+	}
+
+	def Iterable<MixedPortROS> getROSSrvServer(ComponentDefinition comp) {
+		return comp.allROSPorts.filter[it.isROSSvrServer]
+	}
+	
+	def Iterable<MixedPortROS> getROSActionClient(ComponentDefinition comp) {
+		return comp.allROSPorts.filter[it.isROSActionClient]
+	}
+
+	def Iterable<MixedPortROS> getROSActionServer(ComponentDefinition comp) {
+		return comp.allROSPorts.filter[it.isROSActionServer]
 	}
 }

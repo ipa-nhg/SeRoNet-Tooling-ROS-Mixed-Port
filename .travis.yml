@@ -1,0 +1,6 @@
+language: java
+install: true
+script: mvn clean verify -f SeRoNet-Tooling-ROS-Mixed-Port.parent/pom.xml
+cache:
+  directories:
+  - $HOME/.m2

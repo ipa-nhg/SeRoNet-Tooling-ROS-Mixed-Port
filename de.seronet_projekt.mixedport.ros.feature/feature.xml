@@ -2,7 +2,7 @@
 <feature
       id="de.seronet_projekt.mixedport.ros"
       label="ROS-MixedPort"
-      version="1.1.0.qualifier"
+      version="1.2.0.qualifier"
       provider-name="SeRoNet (www.seronet-projekt.de)">
 
    <description url="http://www.seronet-projekt.de/">
@@ -100,49 +100,49 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
          id="de.seronet_projekt.ros.interfaces.pool.xtext.ide"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="de.seronet_projekt.ros.interfaces.pool.xtext"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="de.seronet_projekt.ros.interfaces.pool.xtext.ui"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="de.seronet_projekt.xtend.ROS.generator"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.1.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="de.seronet_projekt.ros.interfaces.pool.edit"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="de.seronet_projekt.ros.interfaces.pool"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="de.seronet_projekt.ros.componentGateway.generator"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
 </feature>

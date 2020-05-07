@@ -1,0 +1,7 @@
+[submodule "ros-model"]
+	path = ros-model
+	url = https://github.com/ipa320/ros-model
+[submodule "SmartMDSD-Toolchain"]
+	path = SmartMDSD-Toolchain
+	url = https://github.com/ipa-nhg/SmartMDSD-Toolchain
+	branch = Travis

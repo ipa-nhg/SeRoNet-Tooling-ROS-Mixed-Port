@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.xtext.example.mydsl.tests
+Bundle-ManifestVersion: 2
+Bundle-Name: de.seronet_projekt.ros.interfaces.pool.xtext.test
+Bundle-Vendor: SeRoNet (www.seronet-projekt.de)
+Bundle-Version: 1.1.0.qualifier
+Bundle-SymbolicName: de.seronet_projekt.ros.interfaces.pool.xtext.tests;singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: de.seronet_projekt.ros.interfaces.pool,
+ org.junit;bundle-version="4.12.0",
+ org.eclipse.xtext.testing,
+ org.eclipse.xtext.xbase.testing,
+ de.seronet_projekt.ros.interfaces.pool.xtext;bundle-version="1.0.0",
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: de.seronet_projekt.ros.interfaces.pool.tests;x-internal=true

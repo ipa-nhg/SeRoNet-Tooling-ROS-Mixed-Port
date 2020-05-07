@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: de.seronet_projekt.ros.interfaces.pool.xtext.ui
 Bundle-Vendor: SeRoNet (www.seronet-projekt.de)
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-SymbolicName: de.seronet_projekt.ros.interfaces.pool.xtext.ui;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.seronet_projekt.ros.interfaces.pool.xtext,

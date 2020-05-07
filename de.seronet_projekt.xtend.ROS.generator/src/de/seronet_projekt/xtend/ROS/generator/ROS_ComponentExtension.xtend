@@ -37,9 +37,17 @@ class ROS_ComponentExtension {
 	«IF comp.hasActionServers»
 	#include <actionlib/server/simple_action_server.h>
 	«ENDIF»
-	«FOR port: comp.ROSActions»
+	«FOR port: comp.ROSPublishers»
 	#include <«port.packageString»/«port.messageString».h>
 	«ENDFOR»
+
+	«FOR port: comp.ROSActionClient»
+	#include <«port.packageString»/«port.messageString».h>
+	«ENDFOR»
+	«FOR port: comp.ROSActionServer»
+	#include <«port.packageString»/«port.messageString».h>
+	«ENDFOR»
+
 	
 	class «comp.name»RosPortBaseClass {
 	public:
@@ -49,6 +57,13 @@ class ROS_ComponentExtension {
 		«FOR port: comp.allROSPorts»
 		«port.rosType» «port.name»;
 		«ENDFOR»
+		
+		«IF comp.hasRosPublishers»
+		«FOR port:comp.ROSPublishers»
+		void «port.name»_publish_ros_msg(const «port.packageString»::«port.messageString» &msg);
+		«ENDFOR»
+		«ENDIF»
+
 	};
 	
 	#endif // ROS_PORT_BASE_CLASS_H_
@@ -62,7 +77,9 @@ class ROS_ComponentExtension {
 	#define ROS_PORT_COMPONENT_EXTENSION_H_
 	
 	#include "«comp.rosPortBaseClassHeaderFile»"
+	«IF comp.hasRosSubscribers || comp.hasRosSvrServers»
 	#include "«comp.rosPortCallbacksUserClassHeaderFile»"
+	«ENDIF»
 	
 	#include "«comp.componentExtensionHeaderFilename»"
 	
@@ -73,9 +90,9 @@ class ROS_ComponentExtension {
 	{
 	private:
 		ros::NodeHandle *nh;
-		
+		«IF comp.hasRosSubscribers || comp.hasRosSvrServers»
 		«comp.name»RosPortCallbacks *callbacksPtr;
-		
+		«ENDIF»
 		virtual int extensionExecution() override;
 	public:
 		«comp.name»RosPortExtension();
@@ -86,7 +103,7 @@ class ROS_ComponentExtension {
 		virtual int onStartup() override;
 
 		«FOR port: comp.allROSPorts»
-			«IF port.isROSAction»
+			«IF port.isROSActionClient || port.isROSActionServer»
 				inline «port.rosType» get«port.name.toFirstUpper»Ptr() {
 					return «port.name»;
 				}
@@ -118,7 +135,9 @@ class ROS_ComponentExtension {
 	:	«component.name»Extension("«component.name»RosPortExtension")
 	{
 		nh = 0;
+		«IF component.hasRosSubscribers || component.hasRosSvrServers»
 		callbacksPtr = 0;
+		«ENDIF»
 	}
 	
 	«component.name»RosPortExtension::~«component.name»RosPortExtension()
@@ -131,15 +150,23 @@ class ROS_ComponentExtension {
 	{
 		ros::init(argc, argv, "«component.name»", ros::init_options::NoSigintHandler);
 		nh = new ros::NodeHandle();
-		
+		«IF component.hasRosSubscribers || component.hasRosSvrServers»
 		callbacksPtr = new «component.name»RosPortCallbacks();
-		
+		«ENDIF»
 		component->rosPorts = this;
 		
 		«FOR port: component.allROSPorts»
 		«port.compilePortCreation»
 		«ENDFOR»
 	}
+	
+	«IF component.hasRosPublishers»
+	«FOR port: component.ROSPublishers»
+	void «component.name»RosPortBaseClass::«port.name»_publish_ros_msg(const «port.packageString»::«port.messageString» &msg){
+		«port.name».publish(msg);
+	}
+	«ENDFOR»
+	«ENDIF»
 	
 	int «component.name»RosPortExtension::onStartup()
 	{
@@ -160,11 +187,16 @@ class ROS_ComponentExtension {
 	
 	void «component.name»RosPortExtension::destroy()
 	{
-		«FOR actPort: component.ROSActions»
+		«FOR actPort: component.ROSActionClient»
+		delete «actPort.name»;
+		«ENDFOR»
+		«FOR actPort: component.ROSActionServer»
 		delete «actPort.name»;
 		«ENDFOR»
 		delete nh;
+		«IF component.hasRosSubscribers || component.hasRosSvrServers»
 		delete callbacksPtr;
+		«ENDIF»
 	}
 	'''
 	

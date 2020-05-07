@@ -149,6 +149,11 @@ class ROS_Callbacks {
 		bool «comp.name»RosPortCallbacks::«srvClient.name»_cb («srvClient.packageString»::«srvClient.messageString»::Request &req, «srvClient.packageString»::«srvClient.messageString»::Response &res)
 		{
 			// for implementing this method, you can use the "COMP->" macro to access the component's class members
+			«FOR activity: comp.elements.filter(Activity)»
+			«FOR link: activity.links.filter(MixedPortROSLink).filter[it.mixedportros == srvClient]»
+			 res= COMP->«activity.name.toFirstLower»->«srvClient.name»_callServiceQuery(req);
+			«ENDFOR»
+			«ENDFOR»
 			return true;
 		}
 		
